@@ -20,25 +20,31 @@ Publii > Tools & Plugins > File Manager
 
 root directory:
 
+```
 CNAME
 gather-postal-code-for-storefront-voting-flyer.html
 storefront-postal-code-voting-flyer.html
 storefront-postal-code-voting-response.html
+```
 
 media/files:
 
+```
 zth_alliance_logo_coins_transparent.png
+```
 
 NOTE: You also need to configure Publii to be able to upload your website pages to the Github repo supporting Github Pages to serve your website out:
 
 Publii > Server > Github Pages
 
+```
 Website URL: https://zthalliance.com
 API Server: api.github.com
 Username: warelock2
 Repository: zth_alliance
 Branch: master
 Token: (This must be your Github "Personal Access Token")
+```
 
 ## DNS configuration
 
@@ -48,12 +54,14 @@ https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pag
 
 Cloudflare DNS record details:
 
+```
 A	zthalliance.com	185.199.108.153
 A	zthalliance.com	185.199.109.153
 A	zthalliance.com	185.199.110.153
 A	zthalliance.com	185.199.111.153
 CNAME	api	d-ry699nmpr4.execute-api.us-west-2.amazonaws.com
 CNAME	www	zthalliance.com
+```
 
 NOTE: The value for api comes from creating an "Origin" TLS certificate in Cloudflare, which get imported into AWS Certificate Manager, and mapped to your API Gateway instance, per this guide:
 
@@ -67,6 +75,7 @@ NOTE: Make sure to set the SSL/TLS encryption mode to "Full (Strict)"
 
 ### Cloudflare Zone-level Web Application Firewall (WAF) rate limiting for our API
 
+```
 Rule name: api_rate_limit
 Field: URI Path
 Operator: wildcard
@@ -75,36 +84,46 @@ OR
 Value: /storefront-postal-code-voting-response*
 OR
 Value: /storefront-postal-code-voting-results*
+```
 
 Expression preview: (http.request.uri.path wildcard "https://api.zthalliance.com/*")
 
+```
 When rate exceeds: 3
 Period: 10 seconds
 Action: Block
 Duration: 10 seconds
+```
 
 ## AWS Lambda function environment variables
 
 storefront-postal-code-voting-response:
 
+```
 DYNAMODB_TABLE: zth-alliance-customer-response
 TEMPLATE_URL: https://zthalliance.com/storefront-postal-code-voting-response.html
+```
 
 ---
 
 storefront-postal-code-voting-results:
 
+```
 DYNAMODB_TABLE: zth-alliance-customer-response
+```
 
 ---
 
 storefront-postal-code-voting-flyer:
 
+```
 BASE_URL: https://api.zthalliance.com/storefront-postal-code-voting-response
 TEMPLATE_URL: https://zthalliance.com/storefront-postal-code-voting-flyer.html
+```
 
 NOTE: The Lambda functions won't run without creating a "Layer", where you upload a "package" that contains support functions from requirements.txt.
 
+```
 echo "qrcode
 Pillow
 urllib3" > requirements.txt
@@ -113,13 +132,15 @@ vi package/lambda_function.py (Insert the Python code from the Lambda function)
 pip install --platform manylinux2014_x86_64 --target=package --implementa
 tion cp --python-version 3.13 --only-binary=:all: -r requirements.txt
 zip -r ../deployment.zip .
+```
 
 NOTE: This creates a file called "deployment.zip", which you upload into the AWS Lambda function "Layer" you created earlier. This should only be redone if the requirements.txt changes. You'll know what to include if when you test your Lambda function it fails with a basic "Library X is missing"-type error. 
 
 If you have to update the package directory because the requirements.txt file change, do this "pip install" command instead, adding "--upgrade" to the end:
 
-pip install --platform manylinux2014_x86_64 --target=package --implementa
-tion cp --python-version 3.13 --only-binary=:all: -r requirements.txt --upgrade
+```
+pip install --platform manylinux2014_x86_64 --target=package --implementation cp --python-version 3.13 --only-binary=:all: -r requirements.txt --upgrade
+```
 
 ## AWS API Gateway
 
@@ -127,18 +148,23 @@ Name: template-service
 
 GET endpoints:
 
+```
 /storefront-postal-code-voting-flyer
 /storefront-postal-code-voting-response
 /storefront-postal-code-voting-results
+```
 
 CORS configuration:
 
+```
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: *
 Access-Control-Allow-Methods: GET
+```
 
 ## AWS Dynamodb
 
+```
 Table name: zth-alliance-customer-response
 
 Partition key: postal_code
@@ -148,3 +174,4 @@ Fields:
 postal_code: String
 visit_cound: Integer?
 
+```
