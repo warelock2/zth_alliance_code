@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate a Per-Postal Code Voting Flyer</title>
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <p>This form will generate a local, neighborhood-focused flyer that you can print and have a merchant post in their storefront window. A customer who wishes to see prices in this store listed in honest money (ie. Physical Gold, physical Silver, Pirate Chain privacy cryptocurrency), rather than in the local fiat currency (ie. US Dollar), can then scan the provided QR code to cast their vote to provide feedback to prospective merchants, encouraging them to get onboarded into the ZTH Alliance.</p>
+    <p></p>
+    <p>Please enter in a postal code that represents your neighborhood. Examples:</p>
+    <ul>
+        <li>US 5-digit ZIP code (ie. "90210")</li>
+        <li>UK Postcode (ie. "SW1A 1AA")</li>
+        <li>India PIN Code (ie. "110001")</li>
+    </ul>
+    <div class="form-container">
+        <form action="https://ntbnnohfn5.execute-api.us-west-2.amazonaws.com/storefront-postal-code-voting-flyer" method="get">
+            <div class="form-group">
+                <label for="postal_code">Regional Code:</label>
+                <input type="text" 
+                       id="postal_code" 
+                       name="postal_code">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
