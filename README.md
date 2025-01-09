@@ -70,11 +70,15 @@ NOTE: Make sure to set the SSL/TLS encryption mode to "Full (Strict)"
 Rule name: api_rate_limit
 Field: URI Path
 Operator: wildcard
-Value: https://api.zthalliance.com/*
+Value: /storefront-postal-code-voting-flyer*
+OR
+Value: /storefront-postal-code-voting-response*
+OR
+Value: /storefront-postal-code-voting-results*
 
 Expression preview: (http.request.uri.path wildcard "https://api.zthalliance.com/*")
 
-When rate exceeds: 10
+When rate exceeds: 3
 Period: 10 seconds
 Action: Block
 Duration: 10 seconds
