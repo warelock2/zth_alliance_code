@@ -1,66 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Generate a Per-Postal Code Voting Flyer</title>
-    <style>
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <p>This form will generate a local, neighborhood-focused flyer that you can print and have a merchant post in their storefront window. A customer who wishes to see prices in this store listed in honest money (ie. Physical Gold, physical Silver, Pirate Chain privacy cryptocurrency), rather than in the local fiat currency (ie. US Dollar), can then scan the provided QR code to cast their vote to provide feedback to prospective merchants, encouraging them to get onboarded into the ZTH Alliance.</p>
-    <p></p>
-    <p>Please enter in a postal code that represents your neighborhood. Examples:</p>
-    <ul>
-        <li>US 5-digit ZIP code (ie. "90210")</li>
-        <li>UK Postcode (ie. "SW1A 1AA")</li>
-        <li>India PIN Code (ie. "110001")</li>
-    </ul>
-    <div class="form-container">
-        <form action="https://api.zthalliance.com/storefront-postal-code-voting-flyer" method="get">
-            <div class="form-group">
-                <label for="postal_code">Regional Code:</label>
-                <input type="text" 
-                       id="postal_code" 
-                       name="postal_code">
-                       required
-                       pattern="^[A-Za-z0-9]{1,10}([ -]?[A-Za-z0-9]{1,10})*$"
-                       title="Please enter a valid postal code. It should be up to 10 characters and may include spaces or dashes."
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
-
+<form action="https://api.zthalliance.com/storefront-postal-code-voting-flyer" method="get">
+<h3>We Need Your Help</h3>
+<div> </div>
+<div>If you want to be able to directly spend honest money with zero transaction history like physical Gold, physical Silver, and Pirate Chain privacy cryptocurrency, it is up to <span style="text-decoration: underline;"><strong>you</strong></span> to reach out to your local merchants and other interested parties to get them on board with the ZTH Alliance. If you're able to do that with a simple conversation, then great. However, if a merchant says they need to see real data reflecting local customer interest in directly spending honest money, you can ask them if they would at least be willing to let you post a customer input flyer in their merchant storefront window.</div>
+<div> </div>
+<div>This page will let you generate a local, neighborhood-focused flyer that you can print and have a merchant post in their storefront window. An in-person customer who wishes to see prices in the merchant's store listed in honest money (ie. Physical Gold, physical Silver, Pirate Chain privacy cryptocurrency), rather than in the local fiat currency (ie. US Dollar), can then scan the QR code on the flyer to cast their vote to provide feedback to prospective merchants, encouraging them to get onboarded into the ZTH Alliance.</div>
+<div> </div>
+<div>Once you have generated and printed a single flyer, simply visit a local copy shop and have a bunch of these printed out and ready for each local merchant you visit. Just keep in mind that each flyer is tied not to a specific merchant's shop, but rather the postal code of that neighborhood. Make sure to generate a new, unique flyer for a different postal code in your area. Don't forget to bring some tape, so you can stick the flyer in their storefront window.</div>
+<h3>International, Honest Money, Earned and Spent Locally</h3>
+<div> </div>
+<div>As this is international money, not dependent or controlled by governments or banks, feel free to specify whatever postal code makes sense for your local neighborhood, <span style="text-decoration: underline;"><strong>no matter where you are in the world</strong></span>.</div>
+<div> </div>
+<div>Here are some examples (Make sure to not type your postal code in quotes):</div>
+<ul>
+<li>US 5-digit ZIP code (ie. "90210")</li>
+<li>UK Postcode (ie. "SW1A 1AA")</li>
+<li>India PIN Code (ie. "110001")</li>
+</ul>
+<h3>Insert Your Local Postal Code Here</h3>
+<div> </div>
+<div class="form-group"><label for="postal_code">Postal Code:</label> <input id="postal_code" title="Please enter a valid postal code. It should be up to 10 characters and may include spaces or dashes." maxlength="10" name="postal_code" pattern="^[A-Za-z0-9\s-]{1,10}$" required="" type="text"></div>
+<p><button type="submit">Submit</button></p>
+<p>NOTE: If for some reason the generated flyer page doesn't fit on a single physical page of 8 1/2" x 11" printer paper, tell your web browser to force it to fit onto a single page. Your web browser will slightly scale the flyer's size to fit onto a single sheet of paper.</p>
+</form>
