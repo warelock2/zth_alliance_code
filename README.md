@@ -63,6 +63,8 @@ When importing this into AWS certificate Manager, you'll also need the "Certific
 
 https://developers.cloudflare.com/ssl/static/origin_ca_rsa_root.pem
 
+NOTE: Make sure to set the SSL/TLS encryption mode to "Full (Strict)"
+
 ### Cloudflare Zone-level Web Application Firewall (WAF) rate limiting for our API
 
 Rule name: api_rate_limit
